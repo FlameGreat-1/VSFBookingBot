@@ -1,0 +1,323 @@
+import random
+from typing import List, Dict, Any
+from user_data_manager import UserDataManager
+
+class PopulateUserData:
+    def __init__(self, user_data_manager: UserDataManager, config: Dict[str, Any]):
+        self.user_data_manager = user_data_manager
+        self.config = config
+
+    async def run(self):
+        users = self.get_users()
+        for user in users:
+            formatted_user = self.format_user(user)
+            await self.user_data_manager.add_user(formatted_user)
+        print(f"Populated {len(users)} users into UserDataManager")
+
+
+    def get_users(self) -> List[Dict[str, Any]]:
+        return [
+            {
+                "passportNumber": "N3010274",
+                "dateOfBirth": "10/11/1990",
+                "passportExpiryDate": "27/03/2038",
+                "firstName": "CLARA",
+                "lastName": "AFONSO",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3553222",
+                "dateOfBirth": "02/12/1976",
+                "passportExpiryDate": "30/12/2039",
+                "firstName": "CARLOS",
+                "lastName": "SANTOS",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3526503",
+                "dateOfBirth": "27/04/1989",
+                "passportExpiryDate": "06/12/2039",
+                "firstName": "LUINDULA",
+                "lastName": "DJONES",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3455286",
+                "dateOfBirth": "07/09/1994",
+                "passportExpiryDate": "03/10/2039",
+                "firstName": "MIRIAN",
+                "lastName": "CANGA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N2566304",
+                "dateOfBirth": "19/09/1983",
+                "passportExpiryDate": "25/10/2029",
+                "firstName": "MARLENE",
+                "lastName": "RODRIGUES",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3405130",
+                "dateOfBirth": "06/06/1996",
+                "passportExpiryDate": "20/08/2034",
+                "firstName": "CLAUDIA",
+                "lastName": "LONGO",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3360364",
+                "dateOfBirth": "20/08/2000",
+                "passportExpiryDate": "16/07/2029",
+                "firstName": "PEDRO",
+                "lastName": "COSTA",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3205646",
+                "dateOfBirth": "05/09/1997",
+                "passportExpiryDate": "09/02/2034",
+                "firstName": "EMILIANA",
+                "lastName": "BARBOSA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N2786097",
+                "dateOfBirth": "14/09/1994",
+                "passportExpiryDate": "08/08/2032",
+                "firstName": "RUBEN",
+                "lastName": "SOUSA",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N2937308",
+                "dateOfBirth": "24/11/1984",
+                "passportExpiryDate": "04/01/2038",
+                "firstName": "JOANA",
+                "lastName": "MAYASI",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3036454",
+                "dateOfBirth": "19/02/1993",
+                "passportExpiryDate": "19/02/2038",
+                "firstName": "DIFLORE",
+                "lastName": "MASSUNGA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N2959009",
+                "dateOfBirth": "19/10/1996",
+                "passportExpiryDate": "23/01/2033",
+                "firstName": "FERNANDO",
+                "lastName": "MANUEL",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3270784",
+                "dateOfBirth": "26/08/1997",
+                "passportExpiryDate": "13/05/2034",
+                "firstName": "LAMBERTO",
+                "lastName": "AMBROSIO",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3417025",
+                "dateOfBirth": "08/04/2002",
+                "passportExpiryDate": "30/08/2034",
+                "firstName": "SENGA",
+                "lastName": "CAMBALA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3359355",
+                "dateOfBirth": "13/10/1990",
+                "passportExpiryDate": "14/07/2039",
+                "firstName": "CRISTELA",
+                "lastName": "MAZILA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N2938646",
+                "dateOfBirth": "09/09/1997",
+                "passportExpiryDate": "05/01/2033",
+                "firstName": "INES",
+                "lastName": "PAULO",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N2887762",
+                "dateOfBirth": "02/06/1984",
+                "passportExpiryDate": "05/12/2037",
+                "firstName": "DOMINGOS",
+                "lastName": "MANGUIMBI",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N2850975",
+                "dateOfBirth": "10/01/1982",
+                "passportExpiryDate": "08/11/2037",
+                "firstName": "JULIANA",
+                "lastName": "ISABEL",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N2734894",
+                "dateOfBirth": "08/07/2012",
+                "passportExpiryDate": "16/02/2027",
+                "firstName": "DORCA",
+                "lastName": "BATILA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3142237",
+                "dateOfBirth": "25/04/1987",
+                "passportExpiryDate": "06/10/2038",
+                "firstName": "ALEX",
+                "lastName": "MUPUIMU",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3242583",
+                "dateOfBirth": "24/10/1999",
+                "passportExpiryDate": "25/04/2034",
+                "firstName": "VERDI",
+                "lastName": "KUFUTU",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3570753",
+                "dateOfBirth": "26/08/1989",
+                "passportExpiryDate": "21/01/2040",
+                "firstName": "ARLETE",
+                "lastName": "COSTA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3458740",
+                "dateOfBirth": "14/09/1959",
+                "passportExpiryDate": "07/10/2039",
+                "firstName": "ANA",
+                "lastName": "DIASSIKILA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3572942",
+                "dateOfBirth": "08/05/2003",
+                "passportExpiryDate": "23/01/2035",
+                "firstName": "ODREU",
+                "lastName": "LUNDU",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3341541",
+                "dateOfBirth": "04/05/2001",
+                "passportExpiryDate": "30/06/2034",
+                "firstName": "JOVANI",
+                "lastName": "PANDA",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3070826",
+                "dateOfBirth": "05/08/1979",
+                "passportExpiryDate": "21/06/2038",
+                "firstName": "FERNANDO",
+                "lastName": "SANTOS",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3098708",
+                "dateOfBirth": "09/04/2000",
+                "passportExpiryDate": "26/07/2033",
+                "firstName": "SAMUEL",
+                "lastName": "NETO",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "A03535574",
+                "dateOfBirth": "16/07/1997",
+                "passportExpiryDate": "25/11/2038",
+                "firstName": "BAYE",
+                "lastName": "FALL",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3140487",
+                "dateOfBirth": "12/06/2005",
+                "passportExpiryDate": "03/10/2033",
+                "firstName": "MARCELINA",
+                "lastName": "MANUEL",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N2853379",
+                "dateOfBirth": "01/03/1984",
+                "passportExpiryDate": "10/11/2037",
+                "firstName": "MARIA",
+                "lastName": "KIADIVILA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N2998003",
+                "dateOfBirth": "04/08/2007",
+                "passportExpiryDate": "13/03/2033",
+                "firstName": "PEDRO",
+                "lastName": "KAYA",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N2933731",
+                "dateOfBirth": "05/11/1977",
+                "passportExpiryDate": "02/01/2038",
+                "firstName": "KIALA",
+                "lastName": "FERNANDO",
+                "gender": "Masculino",
+            },
+            {
+                "passportNumber": "N3249628",
+                "dateOfBirth": "18/09/2004",
+                "passportExpiryDate": "02/05/2034",
+                "firstName": "ALEGRIA",
+                "lastName": "KIMENA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3126477",
+                "dateOfBirth": "20/10/2000",
+                "passportExpiryDate": "15/09/2033",
+                "firstName": "NEUSA",
+                "lastName": "REIS",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N2499713",
+                "dateOfBirth": "01/10/1988",
+                "passportExpiryDate": "17/05/2029",
+                "firstName": "INOCENCIA",
+                "lastName": "QUIZUCOLA",
+                "gender": "Feminino",
+            },
+            {
+                "passportNumber": "N3169942",
+                "dateOfBirth": "07/07/2002",
+                "passportExpiryDate": "31/10/2033",
+                "firstName": "DUKENY",
+                "lastName": "BAPTISTA",
+                "gender": "Masculino",
+            }
+        ]
+
+
+    def format_user(self, user: Dict[str, Any]) -> Dict[str, Any]:
+        return {
+            "passportNumber": user["passportNumber"],
+            "firstName": user["firstName"],
+            "lastName": user["lastName"],
+            "gender": user["gender"],
+            "dateOfBirth": user["dateOfBirth"],
+            "passportExpiryDate": user["passportExpiryDate"],
+            "nationality": "Angola",
+            "countryCode": "+244",
+            "phoneNumber": "932109453",
+            "email": "Vsfbottest@gmail.com"
+        }
