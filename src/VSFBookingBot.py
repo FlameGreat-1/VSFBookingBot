@@ -3,8 +3,7 @@ import logging
 from typing import Dict, Any, List
 from datetime import datetime
 import aiohttp
-import chromedriver_binary 
-import chromedriver_autoinstaller
+import undetected_chromedriver as uc
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -100,29 +99,25 @@ class VFSBookingBot:
         
         if not isinstance(self.config['check_interval'], int) or self.config['check_interval'] <= 0:
             raise ValueError("check_interval must be a positive integer")
-    
 
     def setup_webdriver(self):
-        chrome_options = Options()
+        options = uc.ChromeOptions()
         if self.config['headless']:
-            chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.add_argument(f"user-agent={self.config['user_agent']}")
-    
-         # Randomize browser fingerprint
-        chrome_options.add_argument(f"--window-size={random.randint(1000, 1200)},{random.randint(800, 1000)}")
-        chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        chrome_options.add_experimental_option('useAutomationExtension', False)
-    
-           # Automatically download and install the correct ChromeDriver version
-        chromedriver_autoinstaller.install()  # This will check the current Chrome version and install the matching driver
-    
-        driver = webdriver.Chrome(options=chrome_options)
-    
-         # Set random viewport size
+            options.add_argument("--headless=new")  # Updated headless flag
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument(f"user-agent={self.config['user_agent']}")
+        options.add_argument(f"--window-size={random.randint(1000, 1200)},{random.randint(800, 1000)}")
+
+        # Create the undetected Chrome driver with explicit path to Chromium
+        driver = uc.Chrome(
+            browser_executable_path='/usr/bin/chromium-browser',
+            options=options
+        )
+
+        # Set random viewport size
         driver.set_window_size(random.randint(1000, 1200), random.randint(800, 1000))
-    
+
         return driver
 
     async def create_login_manager(self):
